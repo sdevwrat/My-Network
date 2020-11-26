@@ -1,5 +1,5 @@
 {
-  "name": "mern_social",
+  "name": "My_Network",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://sdevwrat.github.io/My_Network",
@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.2.2",
     "@types/history": "^4.7.8",
     "axios": "^0.21.0",
+    "gh-pages": "^3.1.0",
     "history": "^5.0.0",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",
@@ -30,12 +31,10 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
