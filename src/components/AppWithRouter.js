@@ -20,6 +20,7 @@ const Root = () => (
         <Route path ='/profile/:id' component={ProfilePage} />
         <Route path ='/followers' component={followers} />
         <Route path ='/followings' component={Followings} />
+        <Route component={HomePage} />
     </Switch>
 );
 
