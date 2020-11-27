@@ -1,6 +1,5 @@
 import React from 'react';
-
-import {BrowserRouter,Route,Switch,withRouter} from 'react-router-dom';
+import {HashRouter,BrowserRouter,Route,Switch,withRouter} from 'react-router-dom';
 import withAnalytics,{initAnalytics} from 'react-with-analytics';
 import { createBrowserHistory } from "history";
 
@@ -31,9 +30,9 @@ const Root = () => (
 const App = withRouter(withAnalytics(Root));
 
 const AppWithRouter = () =>(
-    <BrowserRouter basename={process.env.PUBLIC_URL} history={history} >
+    <HashRouter basename={process.env.PUBLIC_URL} history={history} >
         <App />
-    </BrowserRouter>
+    </HashRouter >
 );
 
 export default AppWithRouter;
