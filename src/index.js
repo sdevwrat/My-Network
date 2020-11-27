@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import AppWithRouter from './components/AppWithRouter';
+import App from './App';
 import registerServiceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import jwtDecode from 'jwt-decode';
@@ -26,7 +26,7 @@ if(localStorage.jwtToken) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppWithRouter />
+    <App />
   </Provider>,
   document.getElementById('root')
 );
