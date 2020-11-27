@@ -23,7 +23,7 @@ const styles = theme => ({
     },
     card:{
         margin:'20px auto',
-        width:"70%",
+        width:"80%",
     },
     link: {
         color: '#000',

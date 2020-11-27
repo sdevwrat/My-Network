@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as moment from 'moment';
 
 import { withStyles } from '@material-ui/core/styles';
 import CardHeader from '@material-ui/core/CardHeader';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import Avatar from '@material-ui/core/Avatar';
 
 
@@ -47,20 +42,19 @@ class CommentBody extends Component {
       const { comment, getUser } = this.props;
       getUser(comment.commenterId).then((res) => {
         this.setState({
-          name: res.payload.user.name
+          name: res.payload.user.name,
+          email:res.payload.user.email
         });
       });
     };
 
     render(){
         const {classes,comment} = this.props;
-        const {name} = this.state;
+        const {name,email} = this.state;
         return (
             <CardHeader 
             avatar={
-                <Avatar aria-label="recipe" className={classes.avatar}>
-                  {name.charAt(0)}
-                </Avatar>
+                <Avatar aria-label="recipe" className={classes.avatar} src={`https://robohash.org/${email}`} />
               }
             title = {
                 <div className={classes.commentContent}>

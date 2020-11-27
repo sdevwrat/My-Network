@@ -58,7 +58,8 @@ class registerPage extends Component{
                 this.setState({
                     password:'',
                     confirmPassword:'',
-                    errors:{message}
+                    errors:{message},
+                    loading:false
                 });
                 return ;
         }
