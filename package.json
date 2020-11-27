@@ -1,7 +1,7 @@
 {
-  "name": "my-network",
+  "name": "My_Network",
   "version": "0.1.0",
-  "homepage": "https://sdevwrat.github.io",
+  "homepage": "https://sdevwrat.github.io/My_Network",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.2.2",
     "@types/history": "^4.7.8",
     "axios": "^0.21.0",
+    "gh-pages": "^3.1.0",
     "history": "^5.0.0",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.1",
