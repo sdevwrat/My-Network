@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import AppWithRouter from './components/AppWithRouter';
-import * as serviceWorker from './serviceWorker';
+import registerServiceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import jwtDecode from 'jwt-decode';
 import createStore from './store';
@@ -30,3 +30,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+registerServiceWorker();
