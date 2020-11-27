@@ -27,7 +27,7 @@ const Root = () => (
 const App = withRouter(withAnalytics(Root));
 
 const AppWithRouter = () =>(
-    <BrowserRouter >
+    <BrowserRouter basename={process.env.PUBLIC_URL} >
         <App />
     </BrowserRouter>
 );
