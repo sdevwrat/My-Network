@@ -29,9 +29,12 @@ class registerPage extends Component{
     }
 
     componentWillReceiveProps(nextProps) {
+        this.setState({
+            loading:false
+        })
         if(nextProps.error.success){
             this.setState({
-                success:true
+                success:true,
             })
         }
         if(nextProps.error){
@@ -45,6 +48,9 @@ class registerPage extends Component{
     handleSubmit = async (e) => {
         e.preventDefault();
 
+        this.setState({
+            loading:true
+        })
         const {name,email,password,confirmPassword} = this.state;
         
         if(password !== confirmPassword){
@@ -91,7 +97,7 @@ class registerPage extends Component{
                             <input type="password" placeholder="Confirm Password" name="confirmPassword" value={confirmPassword} onChange={this.handleChange} required/>
                         </div>
                         <div>
-                            <input type="submit" value="Register" disabled={loading || success}/>
+                            <input type="submit" value={loading?"Registering...":"Register"} disabled={success}/>
                             <NavLink to="/login">Log In</NavLink>
                         </div>
                     </form>

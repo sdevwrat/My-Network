@@ -14,6 +14,7 @@ class registerPage extends Component{
             email:"",
             password:"",
             errors:{},
+            loading:false
         };
     };
 
@@ -25,7 +26,8 @@ class registerPage extends Component{
         if (nextProps.error) {
         const {message} = nextProps.error;
           this.setState({
-            errors: {message}
+            errors: {message},
+            loading:false
           });
         }
       };
@@ -44,8 +46,10 @@ class registerPage extends Component{
     }
 
     handleSubmit = (e) => {
-        console.log("submitted")
         e.preventDefault();
+        this.setState({
+            loading:true,
+        })
         const {email,password} = this.state;
         const user = {
             email,password
@@ -54,7 +58,7 @@ class registerPage extends Component{
     };
 
     render(){
-        const {errors,email,password} = this.state;
+        const {errors,email,password,loading} = this.state;
 
         return (
             <div class="container">
@@ -73,7 +77,7 @@ class registerPage extends Component{
                             <input type="password" placeholder="Password" name="password" value={password} onChange={this.handleChange}/>
                         </div>
                         <div>
-                            <input type="submit" value="Log In"/>
+                            <input type="submit" value={loading?"Logging In...":"Log In"}/>
                             <NavLink to="/register">Register</NavLink>
                         </div>
                     </form>
