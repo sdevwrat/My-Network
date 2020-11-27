@@ -2,6 +2,7 @@ import React from 'react';
 
 import {BrowserRouter,Route,Switch,withRouter} from 'react-router-dom';
 import withAnalytics,{initAnalytics} from 'react-with-analytics';
+import { createBrowserHistory } from "history";
 
 import HomePage from '../containers/homePage';
 import registerPage from '../containers/registerPage';
@@ -10,6 +11,9 @@ import discoverPage from '../containers/discoverPage';
 import ProfilePage from '../containers/profilePage';
 import followers from '../containers/followers';
 import Followings from '../containers/followings';
+
+initAnalytics('UA-126201794-1');
+const history = createBrowserHistory();
 
 const Root = () => (
     <Switch>
@@ -27,7 +31,7 @@ const Root = () => (
 const App = withRouter(withAnalytics(Root));
 
 const AppWithRouter = () =>(
-    <BrowserRouter basename={process.env.PUBLIC_URL} >
+    <BrowserRouter basename={process.env.PUBLIC_URL} history={history} >
         <App />
     </BrowserRouter>
 );
