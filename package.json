@@ -1,6 +1,7 @@
 {
   "name": "my-network",
   "version": "0.1.0",
+  "homepage": "https://sdevwrat.github.io/React-Quiz",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
