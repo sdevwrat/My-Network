@@ -20,7 +20,7 @@
 - MongoDB
 
 ### APIs
-- [My Network API](https://github.com/sdevwrat/my-network) for Backend services
+- [My Network API](https://github.com/sdevwrat/myNetwork_API) for Backend services
 - [Material UI](https://material-ui.com/guides/api/) for front end design
 
 
