@@ -1,11 +1,42 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { compose } from 'redux';
 import {connect} from 'react-redux';
-import {NavLink} from 'react-router-dom';
 import { loginUser } from '../actions/authAction';
-import '../css/authPage.css'
+import {NavLink} from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Alert from '@material-ui/lab/Alert';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
+const useStyles = (theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+});
 
-class registerPage extends Component{
+class SignIn extends React.Component {
 
     constructor(){
         super();
@@ -26,6 +57,7 @@ class registerPage extends Component{
         const {message} = nextProps.error;
           this.setState({
             errors: {message},
+            password : "",
             loading:false
           });
         }
@@ -36,7 +68,6 @@ class registerPage extends Component{
           this.props.history.push('/');
         }
     };
-
     handleChange = (e) =>{
         this.setState({
             [e.target.name]:e.target.value,
@@ -50,40 +81,91 @@ class registerPage extends Component{
             loading:true,
         })
         const {email,password} = this.state;
+
+        if(!email || !password ){
+            const message = 'Please fill all the required fields'
+            this.setState({
+                password:'',
+                confirmPassword:'',
+                errors:{message},
+                loading:false
+            });
+            return ;
+        }
+
         const user = {
             email,password
         }
         this.props.signIn(user);
     };
 
-    render(){
-        const {errors,email,password,loading} = this.state;
-
-        return (
-            <div class="container">
-                <section id="content">
-                    <form onSubmit = {this.handleSubmit}>
-                        <h1>Login to your account</h1>
-                        {errors.message && 
-                            <p style={{textAlign:"left",marginLeft:"10%",border:"2px solid red",padding:"4px",maxWidth:"290px"}}>
-                             {errors.message}
-                            </p>
-                        }
-                        <div>
-                            <input type="email" placeholder="Email" name="email" value={email} onChange={this.handleChange}/>
-                        </div>
-                        <div>
-                            <input type="password" placeholder="Password" name="password" value={password} onChange={this.handleChange}/>
-                        </div>
-                        <div>
-                            <input type="submit" value={loading?"Logging In...":"Log In"}/>
-                            <NavLink to="/register">Register</NavLink>
-                        </div>
-                    </form>
-                </section>
-            </div>
-        )
-    }
+  render(){
+    const { classes } = this.props;
+    const {errors,email,password,loading} = this.state;
+    return (
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign in
+            </Typography>
+            <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
+                {errors.message && 
+                    <Alert severity="error">
+                        {errors.message}
+                    </Alert>
+                }
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                value = {email}
+                autoComplete="email"
+                onChange={this.handleChange}
+                autoFocus
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                value = {password}
+                autoComplete="current-password"
+                onChange={this.handleChange}
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                disabled = {loading}
+              >
+                  
+                {!!loading && <CircularProgress style={{marginRight:"14px"}} color="primary" size="0.9rem" />}
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item>
+                    Don't have an account? <NavLink to="/register">Sign Up</NavLink>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+        </Container>
+      );
+  }
 }
 
 const mapStateToProps = state =>({
@@ -95,4 +177,10 @@ const mapDispatchToProps = dispatch =>({
     signIn :user => dispatch(loginUser(user))
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(registerPage);
+export default compose(
+    withStyles(useStyles),
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )
+  )(SignIn);

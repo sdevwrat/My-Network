@@ -24,7 +24,7 @@
 - [Material UI](https://material-ui.com/guides/api/) for front end design
 
 
-##How to run this project
+## How to run this project
 
 1.Clone the repo
 
